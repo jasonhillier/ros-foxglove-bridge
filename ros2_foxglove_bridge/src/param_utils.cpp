@@ -111,6 +111,14 @@ void declareParameters(rclcpp::Node* node) {
   node->declare_parameter(PARAM_PARAMETER_WHITELIST, std::vector<std::string>({".*"}),
                           paramWhiteListDescription);
 
+  auto parameterRetrievalTimeoutMsDescription = rcl_interfaces::msg::ParameterDescriptor{};
+  parameterRetrievalTimeoutMsDescription.name = PARAM_PARAM_RETRIEVAL_TIMEOUT;
+  parameterRetrievalTimeoutMsDescription.type = rcl_interfaces::msg::ParameterType::PARAMETER_INT;
+  parameterRetrievalTimeoutMsDescription.description =
+    "Timeout (ms) for a parameter retrieval operation";
+  parameterRetrievalTimeoutMsDescription.read_only = true;
+  node->declare_parameter(PARAM_USE_COMPRESSION, std::int(5000), parameterRetrievalTimeoutMsDescription);
+
   auto useCompressionDescription = rcl_interfaces::msg::ParameterDescriptor{};
   useCompressionDescription.name = PARAM_USE_COMPRESSION;
   useCompressionDescription.type = rcl_interfaces::msg::ParameterType::PARAMETER_BOOL;

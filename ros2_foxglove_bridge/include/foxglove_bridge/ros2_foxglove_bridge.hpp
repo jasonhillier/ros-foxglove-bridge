@@ -62,6 +62,7 @@ private:
   std::vector<std::regex> _serviceWhitelistPatterns;
   std::vector<std::regex> _assetUriAllowlistPatterns;
   std::shared_ptr<ParameterInterface> _paramInterface;
+  int _parameterRetrievalTimeoutMs;
   std::unordered_map<foxglove::ChannelId, foxglove::ChannelWithoutId> _advertisedTopics;
   std::unordered_map<foxglove::ServiceId, foxglove::ServiceWithoutId> _advertisedServices;
   std::unordered_map<foxglove::ChannelId, SubscriptionsByClient> _subscriptions;

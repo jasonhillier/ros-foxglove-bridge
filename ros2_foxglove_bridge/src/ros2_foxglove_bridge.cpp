@@ -42,6 +42,7 @@ FoxgloveBridge::FoxgloveBridge(const rclcpp::NodeOptions& options)
   _serviceWhitelistPatterns = parseRegexStrings(this, serviceWhiteList);
   const auto paramWhiteList = this->get_parameter(PARAM_PARAMETER_WHITELIST).as_string_array();
   const auto paramWhitelistPatterns = parseRegexStrings(this, paramWhiteList);
+  _parameterRetrievalTimeoutMs = this->get_parameter(PARAM_PARAM_RETRIEVAL_TIMEOUT).as_int();
   const auto useCompression = this->get_parameter(PARAM_USE_COMPRESSION).as_bool();
   _useSimTime = this->get_parameter("use_sim_time").as_bool();
   _capabilities = this->get_parameter(PARAM_CAPABILITIES).as_string_array();
@@ -730,7 +731,7 @@ void FoxgloveBridge::setParameters(const std::vector<foxglove::Parameter>& param
 void FoxgloveBridge::getParameters(const std::vector<std::string>& parameters,
                                    const std::optional<std::string>& requestId,
                                    ConnectionHandle hdl) {
-  const auto params = _paramInterface->getParams(parameters, std::chrono::seconds(5));
+  const auto params = _paramInterface->getParams(parameters, std::chrono::milliseconds(_parameterRetrievalTimeoutMs));
   _server->publishParameterValues(hdl, params, requestId);
 }
 
