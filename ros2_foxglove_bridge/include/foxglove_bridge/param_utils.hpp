@@ -31,6 +31,7 @@ constexpr char DEFAULT_ADDRESS[] = "0.0.0.0";
 constexpr int64_t DEFAULT_SEND_BUFFER_LIMIT = 10000000;
 constexpr int64_t DEFAULT_MIN_QOS_DEPTH = 1;
 constexpr int64_t DEFAULT_MAX_QOS_DEPTH = 25;
+constexpr int64_t DEFAULT_PARAM_RETRIEVAL_TIMEOUT = 5000;
 
 void declareParameters(rclcpp::Node* node);
 
