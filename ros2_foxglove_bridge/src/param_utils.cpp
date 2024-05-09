@@ -117,7 +117,7 @@ void declareParameters(rclcpp::Node* node) {
   parameterRetrievalTimeoutMsDescription.description =
     "Timeout (ms) for a parameter retrieval operation";
   parameterRetrievalTimeoutMsDescription.read_only = true;
-  node->declare_parameter(PARAM_USE_COMPRESSION, DEFAULT_PARAM_RETRIEVAL_TIMEOUT, parameterRetrievalTimeoutMsDescription);
+  node->declare_parameter(PARAM_PARAM_RETRIEVAL_TIMEOUT, DEFAULT_PARAM_RETRIEVAL_TIMEOUT, parameterRetrievalTimeoutMsDescription);
 
   auto useCompressionDescription = rcl_interfaces::msg::ParameterDescriptor{};
   useCompressionDescription.name = PARAM_USE_COMPRESSION;
